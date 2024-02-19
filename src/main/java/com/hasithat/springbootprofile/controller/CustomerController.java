@@ -1,6 +1,7 @@
 package com.hasithat.springbootprofile.controller;
 
 import com.hasithat.springbootprofile.dto.CustomerResponseDTO;
+import com.hasithat.springbootprofile.dto.ProfileDetailsTestDTO;
 import com.hasithat.springbootprofile.entity.Customer;
 import com.hasithat.springbootprofile.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ public class CustomerController {
     @Autowired
     CustomerService customerService;
 
+    @Autowired
+    ProfileDetailsTestDTO profileDetailsTestDTO;
+
     @PostMapping
     public List<Customer> saveCustomers(@RequestBody List<Customer> customers){
         return customerService.saveAllCustomers(customers);
@@ -25,6 +29,12 @@ public class CustomerController {
     @GetMapping
     public List<CustomerResponseDTO> getAllCustomers(){
         return customerService.getAllCustomers();
+    }
+
+
+    @GetMapping("/getProfileMessage")
+    public String getProfileMessage(){
+        return profileDetailsTestDTO.getProfileMessage();
     }
 
 
